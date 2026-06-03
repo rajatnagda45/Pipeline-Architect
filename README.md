@@ -8,28 +8,28 @@ Pipeline Architect is a modern visual workflow builder that enables users to cre
 
 ### Visual Workflow Builder
 
-🎨 Visual Drag-and-Drop Pipeline Builder
-🔗 Real-Time Node Connections
-🧠 AI Workflow Composition
-⚡ Dynamic Variable Parsing
-📊 DAG Validation Engine
-🧩 Reusable Workflow Templates
-📜 Execution Logs & Monitoring
-⌨️ Command Palette & Keyboard Shortcuts
-🌙 Modern Developer-Centric UI
-📈 Real-Time Pipeline Analysis
+- 🎨 Visual Drag-and-Drop Pipeline Builder
+- 🔗 Real-Time Node Connections
+- 🧠 AI Workflow Composition
+- ⚡ Dynamic Variable Parsing
+- 📊 DAG Validation Engine
+- 🧩 Reusable Workflow Templates
+- 📜 Execution Logs & Monitoring
+- ⌨️ Command Palette & Keyboard Shortcuts
+- 🌙 Modern Developer-Centric UI
+- 📈 Real-Time Pipeline Analysis
 
 ### Advanced Node System
 Built-in support for:
-📥 Input Node
-📝 Text Node
-🤖 LLM Node
-📤 Output Node
-🔀 Filter Node
-🧮 Math Node
-🌐 API Node
-⏳ Delay Node
-📌 Note Node
+- 📥 Input Node
+- 📝 Text Node
+- 🤖 LLM Node
+- 📤 Output Node
+- 🔀 Filter Node
+- 🧮 Math Node
+- 🌐 API Node
+- ⏳ Delay Node
+- 📌 Note Node
 
 ### Dynamic Template Variables
 - Supports variables using `{{variable}}` syntax
