@@ -1,6 +1,164 @@
-# VectorShift Pipeline Builder
+# Pipeline Architect
 
-A no-code AI pipeline builder — take-home technical assessment.
+Pipeline Architect is a modern visual workflow builder that enables users to create, validate, and manage AI-powered pipelines through a drag-and-drop interface. The platform uses a Directed Acyclic Graph (DAG) architecture, allowing users to visually connect nodes and design complex workflows without writing extensive code.
+
+---
+
+## 🚀 Features
+
+### Visual Workflow Builder
+- Drag-and-drop workflow creation
+- Interactive node-based canvas
+- Real-time connection management
+- Smooth zooming and navigation
+
+### Advanced Node System
+Built-in support for:
+- Input Node
+- Output Node
+- Text Node
+- LLM Node
+- Filter Node
+- API Node
+- Math Node
+- Delay Node
+- Note Node
+
+### Dynamic Template Variables
+- Supports variables using `{{variable}}` syntax
+- Automatic variable detection
+- Dynamic handle generation
+- Visual mapping between inputs and templates
+
+### DAG Validation
+- Backend-powered pipeline analysis
+- Detects cyclic dependencies
+- Calculates node count
+- Calculates edge count
+- Validates workflow structure
+
+### Workflow Templates
+- Basic Q&A
+- Template Completion
+- API + Summarize
+- Filter & Branch
+
+### Productivity Features
+- Command Palette
+- Keyboard Shortcuts
+- Execution Logs
+- Quick Node Search
+- Undo / Redo Support
+
+### Modern UI/UX
+- Dark theme interface
+- Responsive design
+- Smooth animations
+- Professional dashboard experience
+- Interactive landing page
+
+---
+
+## 🏗️ System Architecture
+
+Frontend:
+- React
+- TypeScript
+- React Flow
+- Zustand
+- Framer Motion
+- Tailwind CSS
+
+Backend:
+- Python
+- FastAPI
+
+Validation:
+- Kahn's Algorithm
+- Directed Acyclic Graph (DAG) Validation
+
+---
+
+## 🔄 Workflow
+
+1. User drags nodes from the Node Library.
+2. Nodes are connected through edges.
+3. Workflow is stored in application state.
+4. User submits pipeline.
+5. Frontend sends nodes and edges to FastAPI backend.
+6. Backend constructs graph structure.
+7. DAG validation is performed using Kahn's Algorithm.
+8. Results are returned to frontend.
+9. Validation status is displayed to user.
+
+---
+
+## 📊 DAG Validation Response
+
+Example:
+
+```json
+{
+  "num_nodes": 4,
+  "num_edges": 3,
+  "is_dag": true
+}
+```
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+|-----------|---------|
+| Ctrl + K | Open Command Palette |
+| Ctrl + Z | Undo |
+| Ctrl + Y | Redo |
+| Ctrl + A | Select All |
+| Ctrl + C | Copy |
+| Ctrl + V | Paste |
+
+---
+
+## 🎯 Use Cases
+
+- AI Workflow Design
+- Prompt Engineering Pipelines
+- API Orchestration
+- Data Processing Flows
+- Automation Systems
+- Educational Workflow Visualization
+- Rapid Prototyping
+
+---
+
+## 🧠 Algorithm Used
+
+### Kahn's Algorithm
+
+Pipeline Architect uses Kahn's Algorithm to validate whether a workflow forms a valid Directed Acyclic Graph (DAG).
+
+Benefits:
+- Detects cycles efficiently
+- Ensures valid execution order
+- Time Complexity: O(V + E)
+
+Where:
+- V = Number of Nodes
+- E = Number of Edges
+
+---
+
+## 🔮 Future Enhancements
+
+- Real Workflow Execution Engine
+- Multi-user Collaboration
+- Authentication & Authorization
+- Cloud Deployment
+- Pipeline Versioning
+- Workflow Scheduling
+- AI Agent Integration
+- Export / Import Pipelines
 
 ---
 
@@ -44,11 +202,6 @@ python -m pytest test_dag.py -v
 # 13 tests, all should pass
 ```
 
----
-
-## Architecture (3 sentences)
-
-The Zustand store is the single source of truth for nodes and edges; every field edit calls `updateNodeField` which immutably updates store state, triggering a re-render of only the affected node. `BaseNode.js` is a single renderer driven by a `config` data object — static nodes are one-line wrappers around `<BaseNode config={…} />`; the Text node computes its input handles at render time by calling `config.computeInputs(data)`, so `{{ variable }}` expressions become live handles without any changes to BaseNode. On Submit, the frontend POSTs `{ nodes, edges }` to FastAPI's `/pipelines/parse`, which runs Kahn's topological sort and returns `{ num_nodes, num_edges, is_dag }`.
 
 ---
 
@@ -128,22 +281,6 @@ backend/
 
 ---
 
-## Known Limitations & What I'd Do With More Time
+## 👨‍💻 Author
 
-**Inline styles instead of a CSS framework**
-Tailwind would require ejecting or adding CRACO. Chakra/MUI would add weight for a demo. Instead, all tokens live in `theme.js` and all style logic in `nodeStyles.js` — same single-source-of-truth discipline, different delivery mechanism. With more time: add Tailwind via `craco` config and convert.
-
-**No persistence**
-Nodes live in memory. Refreshing the page loses the canvas. Fix: Zustand's `persist` middleware + `localStorage`. Two lines of code; skipped to stay in scope.
-
-**Result panel instead of toast**
-The inline result panel replaced `alert()` (blocking, mobile-hostile) but doesn't auto-dismiss or stack multiple results. Fix: `react-hot-toast` — one `npm install` and a one-line wrapper.
-
-**No cycle visualisation**
-When `is_dag: false`, the backend identifies the graph has a cycle but doesn't return *which* edges form it. A better UX would highlight the cycle in red on the canvas. Fix: extend the backend response with `cycle_edges: list[str]` (Kahn's naturally identifies stranded nodes) and apply a red stroke in the frontend.
-
-**No edge type enforcement**
-Any handle can connect to any other handle. A production system would declare handle types on configs (e.g. `type: 'text' | 'file'`) and validate compatibility on `onConnect`.
-
-**TypeScript**
-The config shape, field types, and handle types are documented in JSDoc comments but not enforced. With more time: convert to `.tsx` and define `NodeConfig`, `FieldConfig`, `HandleConfig` interfaces — the existing structure maps cleanly to a discriminated union.
+Rajat Nagda
