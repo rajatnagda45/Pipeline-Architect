@@ -1,4 +1,4 @@
-# Pipeline Architect
+# ⚡ Pipeline Architect
 
 Pipeline Architect is a modern visual workflow builder that enables users to create, validate, and manage AI-powered pipelines through a drag-and-drop interface. The platform uses a Directed Acyclic Graph (DAG) architecture, allowing users to visually connect nodes and design complex workflows without writing extensive code.
 
